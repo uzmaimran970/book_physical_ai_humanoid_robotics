@@ -1,0 +1,17 @@
+{
+  "link.title.Learn": {
+    "message": "سیکھیں"
+  },
+  "link.title.More": {
+    "message": "مزید"
+  },
+  "link.item.label.Introduction": {
+    "message": "تعارف"
+  },
+  "link.item.label.GitHub": {
+    "message": "گِٹ ہب"
+  },
+  "copyright": {
+    "message": "کاپی رائٹ © {year} اے آئی-نیٹو ٹیکسٹ بک۔ Docusaurus کے ساتھ بنایا گیا۔"
+  }
+}

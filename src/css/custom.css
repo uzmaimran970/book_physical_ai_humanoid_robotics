@@ -1,0 +1,288 @@
+/**
+ * Custom CSS for AI-Native Interactive Textbook
+ * Minimal UI with focus on readability
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability on mobile */
+.markdown {
+  --ifm-h1-font-size: 2rem;
+  --ifm-h2-font-size: 1.5rem;
+  --ifm-h3-font-size: 1.25rem;
+}
+
+/* Dark mode */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure mobile responsiveness at 320px minimum */
+@media screen and (max-width: 996px) {
+  :root {
+    --ifm-font-size-base: 16px;
+  }
+
+  .markdown {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Reading time indicator */
+.reading-time {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 1rem;
+}
+
+/* Minimal UI - Focus on content */
+.markdown > h1 {
+  margin-bottom: 0.5rem;
+}
+
+/* Chapter metadata badges */
+.chapter-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+}
+
+.chapter-meta .badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+  font-weight: 500;
+}
+
+[data-theme='dark'] .chapter-meta .badge {
+  background-color: var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-900);
+}
+
+/* Improved code blocks for mobile */
+.prism-code {
+  font-size: 0.85rem;
+}
+
+@media screen and (max-width: 768px) {
+  .prism-code {
+    font-size: 0.75rem;
+  }
+}
+
+/* Better table responsiveness */
+.markdown table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Navigation improvements */
+.pagination-nav {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus on readability - max content width */
+.markdown {
+  max-width: 800px;
+}
+
+/* Mobile optimizations for very small screens (320px+) */
+@media screen and (max-width: 400px) {
+  :root {
+    --ifm-font-size-base: 15px;
+    --ifm-spacing-horizontal: 1rem;
+  }
+
+  .navbar__logo {
+    max-width: 150px;
+  }
+
+  .markdown {
+    font-size: 0.95rem;
+  }
+
+  .markdown h1 {
+    font-size: 1.75rem;
+  }
+
+  .markdown h2 {
+    font-size: 1.35rem;
+  }
+
+  .markdown h3 {
+    font-size: 1.15rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .pagination-nav,
+  .theme-doc-sidebar-container {
+    display: none;
+  }
+
+  .main-wrapper {
+    margin: 0;
+    padding: 0;
+  }
+
+  .markdown {
+    max-width: 100%;
+  }
+}
+
+/* RTL Support for Urdu */
+html[dir='rtl'] {
+  /* Flip text alignment */
+  text-align: right;
+}
+
+html[dir='rtl'] .markdown {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir='rtl'] .markdown ul,
+html[dir='rtl'] .markdown ol {
+  padding-right: 2rem;
+  padding-left: 0;
+}
+
+html[dir='rtl'] .markdown blockquote {
+  border-left: none;
+  border-right: 4px solid var(--ifm-color-emphasis-300);
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+html[dir='rtl'] .chapter-meta {
+  direction: rtl;
+}
+
+html[dir='rtl'] .pagination-nav {
+  direction: rtl;
+}
+
+html[dir='rtl'] .pagination-nav__link {
+  text-align: right;
+}
+
+/* RTL code blocks (keep LTR for code) */
+html[dir='rtl'] pre,
+html[dir='rtl'] code {
+  direction: ltr;
+  text-align: left;
+}
+
+/* RTL table of contents */
+html[dir='rtl'] .table-of-contents {
+  direction: rtl;
+  padding-right: 0;
+}
+
+/* RTL navbar */
+html[dir='rtl'] .navbar__items {
+  flex-direction: row-reverse;
+}
+
+html[dir='rtl'] .navbar__item {
+  margin-left: var(--ifm-navbar-item-padding-horizontal);
+  margin-right: 0;
+}
+
+/* RTL sidebar */
+html[dir='rtl'] .menu {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+html[dir='rtl'] .menu__link {
+  padding-left: var(--ifm-menu-link-padding-vertical);
+  padding-right: calc(var(--ifm-menu-link-padding-horizontal) * var(--ifm-menu-link-sublist-icon-offset));
+}
+
+/* RTL breadcrumbs */
+html[dir='rtl'] .breadcrumbs__item:not(:last-child):after {
+  content: '\\';
+  margin-left: 0;
+  margin-right: 0.5rem;
+  transform: rotate(180deg);
+}
+
+/* RTL chat widget */
+html[dir='rtl'] .chat-widget {
+  right: auto;
+  left: 1rem;
+}
+
+/* RTL forms */
+html[dir='rtl'] input,
+html[dir='rtl'] textarea,
+html[dir='rtl'] select {
+  text-align: right;
+}
+
+/* Urdu font improvements */
+html[lang='ur'] {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Alvi Nastaleeq', 'Nafees Nastaleeq', serif;
+  line-height: 2;
+}
+
+html[lang='ur'] .markdown {
+  line-height: 2.2;
+  font-size: 1.1rem;
+}
+
+html[lang='ur'] h1,
+html[lang='ur'] h2,
+html[lang='ur'] h3,
+html[lang='ur'] h4,
+html[lang='ur'] h5,
+html[lang='ur'] h6 {
+  line-height: 1.8;
+  font-weight: 700;
+}
+
+/* Urdu mobile adjustments */
+@media screen and (max-width: 400px) {
+  html[lang='ur'] .markdown {
+    font-size: 1rem;
+    line-height: 2;
+  }
+}
