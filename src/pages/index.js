@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 
@@ -68,32 +69,70 @@ const modules = [
 
 const colorMap = {
   blue: {
-    bg: 'bg-blue-50 dark:bg-blue-900/10',
-    border: 'border-blue-200 dark:border-blue-800',
-    text: 'text-blue-600 dark:text-blue-400',
-    iconBg: 'bg-blue-100 dark:bg-blue-900/30',
-    hover: 'hover:border-blue-300 dark:hover:border-blue-700'
+    bg: 'bg-book-yellow-50 dark:bg-book-yellow-900/10',
+    border: 'border-book-yellow-200 dark:border-book-yellow-800',
+    text: 'text-book-yellow-700 dark:text-book-yellow-400',
+    iconBg: 'bg-book-yellow-100 dark:bg-book-yellow-900/30',
+    hover: 'hover:border-book-yellow-400 dark:hover:border-book-yellow-600 hover:shadow-md'
   },
   indigo: {
-    bg: 'bg-indigo-50 dark:bg-indigo-900/10',
-    border: 'border-indigo-200 dark:border-indigo-800',
-    text: 'text-indigo-600 dark:text-indigo-400',
-    iconBg: 'bg-indigo-100 dark:bg-indigo-900/30',
-    hover: 'hover:border-indigo-300 dark:hover:border-indigo-700'
+    bg: 'bg-book-pink-50 dark:bg-book-pink-900/10',
+    border: 'border-book-pink-200 dark:border-book-pink-800',
+    text: 'text-book-pink-600 dark:text-book-pink-400',
+    iconBg: 'bg-book-pink-100 dark:bg-book-pink-900/30',
+    hover: 'hover:border-book-pink-400 dark:hover:border-book-pink-600 hover:shadow-md'
   },
   purple: {
-    bg: 'bg-purple-50 dark:bg-purple-900/10',
-    border: 'border-purple-200 dark:border-purple-800',
-    text: 'text-purple-600 dark:text-purple-400',
-    iconBg: 'bg-purple-100 dark:bg-purple-900/30',
-    hover: 'hover:border-purple-300 dark:hover:border-purple-700'
+    bg: 'bg-gradient-to-br from-book-yellow-50 to-book-pink-50 dark:from-book-yellow-900/10 dark:to-book-pink-900/10',
+    border: 'border-book-yellow-200 dark:border-book-yellow-800',
+    text: 'text-book-yellow-700 dark:text-book-yellow-400',
+    iconBg: 'bg-gradient-to-br from-book-yellow-100 to-book-pink-100 dark:from-book-yellow-900/30 dark:to-book-pink-900/30',
+    hover: 'hover:border-book-pink-300 dark:hover:border-book-pink-700 hover:shadow-md'
   },
   pink: {
-    bg: 'bg-pink-50 dark:bg-pink-900/10',
-    border: 'border-pink-200 dark:border-pink-800',
-    text: 'text-pink-600 dark:text-pink-400',
-    iconBg: 'bg-pink-100 dark:bg-pink-900/30',
-    hover: 'hover:border-pink-300 dark:hover:border-pink-700'
+    bg: 'bg-book-pink-50 dark:bg-book-pink-900/10',
+    border: 'border-book-pink-200 dark:border-book-pink-800',
+    text: 'text-book-pink-600 dark:text-book-pink-400',
+    iconBg: 'bg-book-pink-100 dark:bg-book-pink-900/30',
+    hover: 'hover:border-book-pink-400 dark:hover:border-book-pink-600 hover:shadow-md'
+  }
+};
+
+// Animation variants for professional, subtle animations
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+  }
+};
+
+const fadeInVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6, ease: 'easeOut' }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const slideInVariants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
   }
 };
 
@@ -104,107 +143,176 @@ export default function Home() {
       description="A Comprehensive Guide to Modern Robotics and AI">
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 py-12 md:py-20">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-              Physical AI & Humanoid Robotics
-            </h1>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A comprehensive guide to building intelligent robots with ROS 2, simulation, NVIDIA Isaac, and Vision-Language-Action models
-            </p>
-          </div>
+      <section className="relative overflow-hidden bg-gradient-to-br from-book-yellow-50 via-white to-book-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 md:py-24 lg:py-32">
+        {/* Animated background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-book-yellow-400/10 via-transparent to-book-pink-500/10 dark:from-book-yellow-500/5 dark:to-book-pink-500/5 animate-pulse-slow"></div>
+
+        <div className="container relative mx-auto px-4 max-w-6xl">
+          <motion.div
+            className="text-center mb-14"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            {/* Book badge */}
+            <motion.div
+              className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-book-yellow-100 dark:bg-book-yellow-900/20 border border-book-yellow-300 dark:border-book-yellow-700 rounded-full"
+              variants={fadeInVariants}
+            >
+              <svg className="w-4 h-4 text-book-yellow-600 dark:text-book-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              <span className="text-sm font-semibold text-book-yellow-700 dark:text-book-yellow-300">AI-Native Interactive Textbook</span>
+            </motion.div>
+
+            <motion.h1
+              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-gradient-to-r from-gray-900 via-book-yellow-700 to-book-pink-600 dark:from-white dark:via-book-yellow-400 dark:to-book-pink-400 bg-clip-text text-transparent leading-tight"
+              variants={fadeUpVariants}
+            >
+              Physical AI &<br className="sm:hidden" /> Humanoid Robotics
+            </motion.h1>
+
+            <motion.p
+              className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto font-medium leading-relaxed"
+              variants={fadeUpVariants}
+            >
+              Master intelligent robotics with <span className="text-book-yellow-600 dark:text-book-yellow-400 font-semibold">ROS 2</span>, <span className="text-book-pink-600 dark:text-book-pink-400 font-semibold">NVIDIA Isaac</span>, and cutting-edge <span className="text-book-yellow-600 dark:text-book-yellow-400 font-semibold">Vision-Language-Action</span> models
+            </motion.p>
+          </motion.div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mb-12">
-            <div className="text-center">
-              <div className="text-2xl md:text-4xl font-bold text-blue-600 dark:text-blue-400">4</div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-1">Modules</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400">12</div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-1">Chapters</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-4xl font-bold text-purple-600 dark:text-purple-400">100+</div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-1">Examples</div>
-            </div>
-          </div>
+          <motion.div
+            className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto mb-14"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <motion.div
+              className="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-book-yellow-200 dark:border-book-yellow-800/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              variants={fadeUpVariants}
+            >
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-br from-book-yellow-500 to-book-yellow-600 bg-clip-text text-transparent">4</div>
+              <div className="text-sm md:text-base text-gray-700 dark:text-gray-400 mt-2 font-medium">Modules</div>
+            </motion.div>
+            <motion.div
+              className="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-book-pink-200 dark:border-book-pink-800/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              variants={fadeUpVariants}
+            >
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-br from-book-pink-500 to-book-pink-600 bg-clip-text text-transparent">12</div>
+              <div className="text-sm md:text-base text-gray-700 dark:text-gray-400 mt-2 font-medium">Chapters</div>
+            </motion.div>
+            <motion.div
+              className="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-book-yellow-200 dark:border-book-yellow-800/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              variants={fadeUpVariants}
+            >
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-br from-book-yellow-500 to-book-pink-600 bg-clip-text text-transparent">100+</div>
+              <div className="text-sm md:text-base text-gray-700 dark:text-gray-400 mt-2 font-medium">Examples</div>
+            </motion.div>
+          </motion.div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUpVariants}
+          >
             <Link
               to="/docs/intro"
-              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors">
-              Get Started
-              <svg className="ml-2 w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              className="group inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-semibold rounded-xl text-white bg-gradient-to-r from-book-pink-500 to-book-pink-600 hover:from-book-pink-600 hover:to-book-pink-700 shadow-lg transition-all duration-300 hover:shadow-[0_8px_30px_rgba(236,72,153,0.4)] hover:scale-105">
+              Start Reading
+              <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
             <Link
               to="/docs/intro"
-              className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-              Browse Chapters
+              className="group inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-semibold rounded-xl text-gray-900 dark:text-white bg-white dark:bg-gray-800 border-2 border-book-yellow-400 dark:border-book-yellow-600 hover:bg-book-yellow-50 dark:hover:bg-gray-700 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
+              Browse Modules
+              <svg className="ml-2 w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Course Modules */}
-      <section className="py-12 md:py-20 bg-white dark:bg-gray-800">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={slideInVariants}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 to-book-yellow-700 dark:from-white dark:to-book-yellow-400 bg-clip-text text-transparent mb-4">
               Course Modules
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Structured learning path from fundamentals to advanced topics
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {modules.map((module) => {
+          <motion.div
+            className="grid md:grid-cols-2 gap-6 lg:gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            {modules.map((module, idx) => {
               const colors = colorMap[module.color];
               return (
-                <div
+                <motion.div
                   key={module.id}
-                  className={`border ${colors.border} ${colors.bg} rounded-lg p-6 transition-all ${colors.hover}`}>
-                  <div className="flex items-start gap-4">
-                    <div className={`${colors.iconBg} ${colors.text} p-3 rounded-lg flex-shrink-0`}>
+                  className={`group border-2 ${colors.border} ${colors.bg} rounded-2xl p-6 md:p-8 transition-all duration-300 ${colors.hover} cursor-pointer`}
+                  variants={fadeUpVariants}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.02,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                >
+                  <div className="flex items-start gap-5">
+                    <div className={`${colors.iconBg} ${colors.text} p-4 rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                       {module.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-baseline gap-2 mb-2">
-                        <span className={`${colors.text} text-sm font-semibold`}>
+                      <div className="flex items-baseline gap-2 mb-3">
+                        <span className={`${colors.text} text-sm font-bold uppercase tracking-wide`}>
                           Module {module.id}
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
                         {module.title}
                       </h3>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {module.chapters.map((chapter, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                            <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                          <li key={idx} className="flex items-start gap-3 text-sm md:text-base text-gray-700 dark:text-gray-300">
+                            <svg className="w-5 h-5 mt-0.5 flex-shrink-0 text-book-yellow-500 dark:text-book-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
-                            <span className="flex-1">{chapter}</span>
+                            <span className="flex-1 font-medium">{chapter}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-14 text-center">
             <Link
               to="/docs/intro"
-              className={`inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline`}>
+              className={`inline-flex items-center gap-2 text-lg font-semibold text-book-pink-600 dark:text-book-pink-400 hover:text-book-pink-700 dark:hover:text-book-pink-300 transition-colors group`}>
               View full curriculum
-              <svg className="ml-1 w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
@@ -213,47 +321,47 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-12 md:py-20 bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                <svg className="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            <div className="text-center group">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-book-yellow-100 to-book-yellow-200 dark:from-book-yellow-900/30 dark:to-book-yellow-800/30 text-book-yellow-600 dark:text-book-yellow-400 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 Comprehensive Content
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
+              <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 From ROS 2 basics to advanced VLA models
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
-                <svg className="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center group">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-book-pink-100 to-book-pink-200 dark:from-book-pink-900/30 dark:to-book-pink-800/30 text-book-pink-600 dark:text-book-pink-400 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 Practical Examples
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
+              <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 100+ code examples and hands-on exercises
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
-                <svg className="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center group">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-book-yellow-100 via-book-pink-100 to-book-pink-200 dark:from-book-yellow-900/30 dark:via-book-pink-900/30 dark:to-book-pink-800/30 text-book-pink-600 dark:text-book-pink-400 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 Modern Technologies
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
+              <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 NVIDIA Isaac, Gazebo, Unity, and more
               </p>
             </div>

@@ -80,7 +80,7 @@ const ChatWidget: React.FC = () => {
           onClick={() => setIsOpen(true)}
           aria-label="Open chat"
         >
-          💬 Ask AI
+          💬 Chat AI
         </button>
       )}
 
@@ -106,10 +106,13 @@ const ChatWidget: React.FC = () => {
           <div className={styles.chatMessages}>
             {messages.length === 0 && (
               <div className={styles.welcomeMessage}>
-                <p>👋 Hi! I'm your AI assistant for this textbook.</p>
-                <p>Ask me anything about Physical AI and Humanoid Robotics!</p>
+                <p>🤖 AI Textbook Assistant</p>
+                <p>Chatbot will be available soon! 🚀</p>
+                <p style={{fontSize: '14px', marginTop: '20px', color: 'var(--ifm-color-emphasis-600)', lineHeight: '1.6'}}>
+                  Coming soon: Ask questions about Physical AI & Humanoid Robotics and get instant answers with relevant chapter citations.
+                </p>
                 <div className={styles.exampleQuestions}>
-                  <p><strong>Example questions:</strong></p>
+                  <p>Preview - Example questions:</p>
                   <button onClick={() => setInput("What is the Zero Moment Point?")}>
                     What is the Zero Moment Point?
                   </button>
