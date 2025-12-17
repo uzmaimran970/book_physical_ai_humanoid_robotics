@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: rag-chatbot-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: QDRANT_URL
+        value: https://d8265a1b-bab5-4cfb-9435-cfb8385b9cb9.us-east4-0.gcp.cloud.qdrant.io
+      - key: QDRANT_API_KEY
+        sync: false  # Add this in Render dashboard (secret)
+      - key: COHERE_API_KEY
+        sync: false  # Add this in Render dashboard (secret)
+      - key: ANTHROPIC_API_KEY
+        sync: false  # Add this in Render dashboard (secret)
+      - key: NEON_DB_URL
+        sync: false  # Add this in Render dashboard (secret)
+      - key: FRONTEND_URL
+        value: https://book-physical-ai-humanoid-robotics.vercel.app
+      - key: CHUNK_SIZE
+        value: 750
+      - key: CHUNK_OVERLAP
+        value: 75
+      - key: TOP_K_DEFAULT
+        value: 3

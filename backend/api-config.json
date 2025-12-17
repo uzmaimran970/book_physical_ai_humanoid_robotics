@@ -1,0 +1,39 @@
+{
+  "development": {
+    "apiUrl": "http://localhost:8000",
+    "endpoints": {
+      "ask": "/api/v1/ask",
+      "query": "/api/v1/query",
+      "health": "/api/v1/health",
+      "stats": "/api/v1/analytics/stats",
+      "errors": "/api/v1/analytics/errors"
+    }
+  },
+  "production": {
+    "apiUrl": "http://localhost:8000",
+    "endpoints": {
+      "ask": "/api/v1/ask",
+      "query": "/api/v1/query",
+      "health": "/api/v1/health",
+      "stats": "/api/v1/analytics/stats",
+      "errors": "/api/v1/analytics/errors"
+    }
+  },
+  "cors": {
+    "allowedOrigins": [
+      "http://localhost:3000",
+      "https://book-physical-ai-humanoid-robotics.vercel.app"
+    ]
+  },
+  "features": {
+    "asyncRequests": true,
+    "multiUser": true,
+    "logging": true,
+    "analytics": true
+  },
+  "performance": {
+    "targetLatency": "2000ms",
+    "maxConcurrentUsers": 10,
+    "requestTimeout": 30000
+  }
+}

@@ -1,0 +1,23 @@
+# Core framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+
+# AI/ML services
+cohere==4.47.0
+qdrant-client==1.7.3
+anthropic==0.18.1
+
+# Database
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+
+# Utilities
+python-dotenv==1.0.0
+tiktoken==0.6.0
+
+# Development
+pytest==7.4.4
+pytest-asyncio==0.23.3
+httpx==0.26.0
+google-generativeai>=0.3.0
