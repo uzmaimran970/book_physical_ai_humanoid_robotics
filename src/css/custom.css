@@ -1,0 +1,649 @@
+/**
+ * Custom CSS for AI-Native Interactive Textbook
+ * Minimal UI with focus on readability
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Yellow Theme */
+  --ifm-color-primary: #eab308;
+  --ifm-color-primary-dark: #ca8a04;
+  --ifm-color-primary-darker: #a16207;
+  --ifm-color-primary-darkest: #854d0e;
+  --ifm-color-primary-light: #fde047;
+  --ifm-color-primary-lighter: #fef08a;
+  --ifm-color-primary-lightest: #fef9c3;
+
+  /* Secondary Pink Accent */
+  --book-color-pink: #ec4899;
+  --book-color-pink-dark: #db2777;
+  --book-color-pink-light: #f472b6;
+
+  /* Premium neutral colors */
+  --ifm-background-color: #ffffff;
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-footer-background-color: #1e293b;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(234, 179, 8, 0.1);
+
+  /* Improve readability */
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.7;
+  --ifm-heading-font-weight: 700;
+}
+
+/* For readability on mobile */
+.markdown {
+  --ifm-h1-font-size: 2rem;
+  --ifm-h2-font-size: 1.5rem;
+  --ifm-h3-font-size: 1.25rem;
+}
+
+/* Dark mode */
+[data-theme='dark'] {
+  /* Primary Yellow Theme for Dark Mode */
+  --ifm-color-primary: #facc15;
+  --ifm-color-primary-dark: #eab308;
+  --ifm-color-primary-darker: #ca8a04;
+  --ifm-color-primary-darkest: #a16207;
+  --ifm-color-primary-light: #fde047;
+  --ifm-color-primary-lighter: #fef08a;
+  --ifm-color-primary-lightest: '#fef9c3';
+
+  /* Secondary Pink Accent for Dark Mode */
+  --book-color-pink: #f472b6;
+  --book-color-pink-dark: #ec4899;
+  --book-color-pink-light: #f9a8d4;
+
+  /* Dark background colors */
+  --ifm-background-color: #0f172a;
+  --ifm-navbar-background-color: #1e293b;
+  --ifm-footer-background-color: #020617;
+
+  --docusaurus-highlighted-code-line-bg: rgba(250, 204, 21, 0.15);
+}
+
+/* Ensure mobile responsiveness at 320px minimum */
+@media screen and (max-width: 996px) {
+  :root {
+    --ifm-font-size-base: 16px;
+  }
+
+  .markdown {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Reading time indicator */
+.reading-time {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 1rem;
+}
+
+/* Minimal UI - Focus on content */
+.markdown > h1 {
+  margin-bottom: 0.5rem;
+}
+
+/* Chapter metadata badges */
+.chapter-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+}
+
+.chapter-meta .badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+  font-weight: 500;
+}
+
+[data-theme='dark'] .chapter-meta .badge {
+  background-color: var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-900);
+}
+
+/* Improved code blocks for mobile */
+.prism-code {
+  font-size: 0.85rem;
+}
+
+@media screen and (max-width: 768px) {
+  .prism-code {
+    font-size: 0.75rem;
+  }
+}
+
+/* Better table responsiveness */
+.markdown table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Navigation improvements */
+.pagination-nav {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus on readability - max content width */
+.markdown {
+  max-width: 800px;
+}
+
+/* Mobile optimizations for very small screens (320px+) */
+@media screen and (max-width: 400px) {
+  :root {
+    --ifm-font-size-base: 15px;
+    --ifm-spacing-horizontal: 1rem;
+  }
+
+  .navbar__logo {
+    max-width: 150px;
+  }
+
+  .markdown {
+    font-size: 0.95rem;
+  }
+
+  .markdown h1 {
+    font-size: 1.75rem;
+  }
+
+  .markdown h2 {
+    font-size: 1.35rem;
+  }
+
+  .markdown h3 {
+    font-size: 1.15rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .pagination-nav,
+  .theme-doc-sidebar-container {
+    display: none;
+  }
+
+  .main-wrapper {
+    margin: 0;
+    padding: 0;
+  }
+
+  .markdown {
+    max-width: 100%;
+  }
+}
+
+/* RTL Support for Urdu */
+html[dir='rtl'] {
+  /* Flip text alignment */
+  text-align: right;
+}
+
+html[dir='rtl'] .markdown {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir='rtl'] .markdown ul,
+html[dir='rtl'] .markdown ol {
+  padding-right: 2rem;
+  padding-left: 0;
+}
+
+html[dir='rtl'] .markdown blockquote {
+  border-left: none;
+  border-right: 4px solid var(--ifm-color-emphasis-300);
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+html[dir='rtl'] .chapter-meta {
+  direction: rtl;
+}
+
+html[dir='rtl'] .pagination-nav {
+  direction: rtl;
+}
+
+html[dir='rtl'] .pagination-nav__link {
+  text-align: right;
+}
+
+/* RTL code blocks (keep LTR for code) */
+html[dir='rtl'] pre,
+html[dir='rtl'] code {
+  direction: ltr;
+  text-align: left;
+}
+
+/* RTL table of contents */
+html[dir='rtl'] .table-of-contents {
+  direction: rtl;
+  padding-right: 0;
+}
+
+/* RTL navbar */
+html[dir='rtl'] .navbar__items {
+  flex-direction: row-reverse;
+}
+
+html[dir='rtl'] .navbar__item {
+  margin-left: var(--ifm-navbar-item-padding-horizontal);
+  margin-right: 0;
+}
+
+/* RTL sidebar */
+html[dir='rtl'] .menu {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+html[dir='rtl'] .menu__link {
+  padding-left: var(--ifm-menu-link-padding-vertical);
+  padding-right: calc(var(--ifm-menu-link-padding-horizontal) * var(--ifm-menu-link-sublist-icon-offset));
+}
+
+/* RTL breadcrumbs */
+html[dir='rtl'] .breadcrumbs__item:not(:last-child):after {
+  content: '\\';
+  margin-left: 0;
+  margin-right: 0.5rem;
+  transform: rotate(180deg);
+}
+
+/* RTL chat widget */
+html[dir='rtl'] .chat-widget {
+  right: auto;
+  left: 1rem;
+}
+
+/* RTL forms */
+html[dir='rtl'] input,
+html[dir='rtl'] textarea,
+html[dir='rtl'] select {
+  text-align: right;
+}
+
+/* Urdu font improvements */
+html[lang='ur'] {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Alvi Nastaleeq', 'Nafees Nastaleeq', serif;
+  line-height: 2;
+}
+
+html[lang='ur'] .markdown {
+  line-height: 2.2;
+  font-size: 1.1rem;
+}
+
+html[lang='ur'] h1,
+html[lang='ur'] h2,
+html[lang='ur'] h3,
+html[lang='ur'] h4,
+html[lang='ur'] h5,
+html[lang='ur'] h6 {
+  line-height: 1.8;
+  font-weight: 700;
+}
+
+/* Urdu mobile adjustments */
+@media screen and (max-width: 400px) {
+  html[lang='ur'] .markdown {
+    font-size: 1rem;
+    line-height: 2;
+  }
+}
+
+/* ============================================ */
+/* PREMIUM UI ENHANCEMENTS */
+/* ============================================ */
+
+/* Navbar Premium Styling */
+.navbar {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.navbar--fixed-top {
+  border-bottom: 1px solid rgba(234, 179, 8, 0.1);
+}
+
+[data-theme='dark'] .navbar--fixed-top {
+  border-bottom: 1px solid rgba(250, 204, 21, 0.1);
+}
+
+/* Active navbar link with smooth yellow-pink underline */
+.navbar__link--active {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600;
+  position: relative;
+}
+
+.navbar__link--active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--book-color-pink));
+  border-radius: 2px;
+  animation: slideInUnderline 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes slideInUnderline {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Navbar hover effects with smooth underline */
+.navbar__link {
+  position: relative;
+  transition: color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.navbar__link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--book-color-pink));
+  transform: translateX(-50%);
+  transition: width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  border-radius: 2px;
+}
+
+.navbar__link:hover {
+  color: var(--ifm-color-primary);
+}
+
+.navbar__link:hover::before {
+  width: 100%;
+}
+
+/* Sidebar Premium Styling */
+.theme-doc-sidebar-container {
+  border-right: 1px solid rgba(234, 179, 8, 0.1);
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+  border-right: 1px solid rgba(250, 204, 21, 0.1);
+}
+
+.menu__link {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.menu__link:hover {
+  background-color: rgba(234, 179, 8, 0.08);
+  color: var(--ifm-color-primary-dark);
+}
+
+[data-theme='dark'] .menu__link:hover {
+  background-color: rgba(250, 204, 21, 0.08);
+}
+
+/* Active sidebar item - Yellow highlight */
+.menu__link--active {
+  background: linear-gradient(90deg, rgba(234, 179, 8, 0.15), rgba(236, 72, 153, 0.05));
+  color: var(--ifm-color-primary-dark);
+  font-weight: 600;
+  border-left: 3px solid var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .menu__link--active {
+  background: linear-gradient(90deg, rgba(250, 204, 21, 0.15), rgba(244, 114, 182, 0.05));
+  color: var(--ifm-color-primary);
+}
+
+/* Sidebar category with pink accent */
+.menu__list-item-collapsible:hover {
+  background-color: rgba(236, 72, 153, 0.05);
+}
+
+/* Scroll progress indicator (Yellow) */
+.theme-doc-markdown {
+  position: relative;
+}
+
+/* Reading progress bar */
+.progress-bar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--book-color-pink));
+  transform-origin: left;
+  z-index: 999;
+  transition: transform 0.1s ease;
+}
+
+/* Smooth animations for content - Reduced for performance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Only animate first few elements for performance */
+.markdown > h1,
+.markdown > h2,
+.markdown > h3,
+.markdown > .admonition {
+  animation: fadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Premium button styling with smooth transitions */
+.button--primary {
+  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-primary-dark));
+  border: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.button--primary:hover {
+  background: linear-gradient(135deg, var(--ifm-color-primary-dark), var(--ifm-color-primary-darker));
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(234, 179, 8, 0.4);
+}
+
+/* Pink accent buttons with glow effect */
+.button--secondary {
+  background: linear-gradient(135deg, var(--book-color-pink), var(--book-color-pink-dark));
+  color: white;
+  border: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.button--secondary:hover {
+  background: linear-gradient(135deg, var(--book-color-pink-dark), #be185d);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.5), 0 0 20px rgba(236, 72, 153, 0.2);
+}
+
+/* Footer Premium Styling */
+.footer {
+  border-top: 1px solid var(--ifm-color-primary);
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+  padding: 3rem 0 1.5rem;
+}
+
+.footer__title {
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+}
+
+.footer__item {
+  color: #94a3b8;
+  transition: color 0.2s ease;
+}
+
+.footer__item:hover {
+  color: var(--book-color-pink-light);
+}
+
+.footer__copyright {
+  color: #64748b;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(250, 204, 21, 0.1);
+}
+
+/* Code blocks with yellow accent */
+pre {
+  border-left: 3px solid var(--ifm-color-primary);
+  border-radius: 8px;
+}
+
+code {
+  background-color: rgba(234, 179, 8, 0.08);
+  color: var(--ifm-color-primary-dark);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+}
+
+[data-theme='dark'] code {
+  background-color: rgba(250, 204, 21, 0.1);
+  color: var(--ifm-color-primary);
+}
+
+/* Table of contents with pink accent */
+.table-of-contents__link {
+  transition: color 0.2s ease;
+}
+
+.table-of-contents__link:hover {
+  color: var(--book-color-pink);
+}
+
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  border-left: 2px solid var(--book-color-pink);
+}
+
+/* Pagination with pink hover */
+.pagination-nav__link:hover {
+  border-color: var(--book-color-pink);
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.05), rgba(236, 72, 153, 0.05));
+}
+
+.pagination-nav__label::before {
+  color: var(--book-color-pink);
+}
+
+/* Search bar with premium styling */
+.navbar__search-input {
+  border: 1px solid rgba(234, 179, 8, 0.2);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.navbar__search-input:focus {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.1);
+}
+
+/* Smooth hover effects */
+a {
+  transition: color 0.2s ease;
+}
+
+/* Icon size normalization */
+svg {
+  flex-shrink: 0;
+}
+
+.navbar svg,
+.menu svg,
+.footer svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Admonitions with premium colors */
+.admonition {
+  border-left-width: 4px;
+  border-radius: 6px;
+}
+
+.admonition-tip {
+  border-left-color: var(--ifm-color-primary);
+}
+
+.admonition-warning {
+  border-left-color: var(--book-color-pink);
+}
+
+/* Hero section gradient background */
+.hero--primary {
+  background: linear-gradient(135deg, #fef9c3, #fce7f3);
+}
+
+[data-theme='dark'] .hero--primary {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(236, 72, 153, 0.1));
+}
+
+/* Improve spacing and padding */
+.container {
+  max-width: 1280px;
+}
+
+/* Premium card hover effects */
+.card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
